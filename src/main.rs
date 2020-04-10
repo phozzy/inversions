@@ -1,3 +1,16 @@
+fn sort_and_count(unsorted: Vec<isize>) -> (Vec<isize>, usize) {
+    let length = unsorted.len();
+    if length == 1 {
+        (unsorted, 0)
+    } else {
+        let (first_unsorted, second_unsorted) = unsorted.split_at(length / 2);
+        let (first_sorted, left_inversions) = sort_and_count(first_unsorted.to_vec());
+        let (second_sorted, right_inversions) = sort_and_count(second_unsorted.to_vec());
+        let (sorted, split_inversions) = count_split_inv(first_sorted, second_sorted);
+        let total_inversions = left_inversions + right_inversions + split_inversions;
+        (sorted, total_inversions)
+    }
+}
 fn count_split_inv(first_sorted: Vec<isize>, second_sorted: Vec<isize>) -> (Vec<isize>, usize) {
     let mut output: Vec<isize> = Vec::new();
     let mut first = first_sorted.iter();
