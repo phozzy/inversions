@@ -59,5 +59,7 @@ fn count_split_inv(first_sorted: Vec<isize>, second_sorted: Vec<isize>) -> (Vec<
     }
 }
 fn main() {
-    println!("Hello, world!");
+    let unsorted = vec![1, 3, 5, 2, 4, 6];
+    let (_sorted, inversions) = sort_and_count(unsorted);
+    println!("number of inversions is {}", inversions);
 }
